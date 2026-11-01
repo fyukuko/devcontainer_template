@@ -1,0 +1,19 @@
+# 認証情報・秘密情報
+.env
+.env.*
+!.env.example
+.aws/
+.claude/
+*.pem
+*.key
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# バックアップ
+*.backup

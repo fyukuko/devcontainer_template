@@ -1,0 +1,18 @@
+{
+  "name": "Claude Code Python Sandbox",
+  "dockerComposeFile": "compose.yaml",
+  "service": "claude",
+  "workspaceFolder": "/workspaces/claude-sandbox",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}

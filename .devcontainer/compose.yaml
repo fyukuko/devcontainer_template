@@ -1,0 +1,53 @@
+services:
+  claude:
+    image: mcr.microsoft.com/devcontainers/python:3.12-bookworm
+
+    user: vscode
+
+    volumes:
+      - ..:/workspaces/claude-sandbox
+      - claude-sandbox-config:/home/vscode/.claude
+
+    working_dir: /workspaces/claude-sandbox
+
+    environment:
+      CLAUDE_CONFIG_DIR: /home/vscode/.claude
+
+      HTTP_PROXY: http://proxy:3128
+      HTTPS_PROXY: http://proxy:3128
+      http_proxy: http://proxy:3128
+      https_proxy: http://proxy:3128
+      NO_PROXY: localhost,127.0.0.1
+
+    networks:
+      - restricted
+
+    cap_drop:
+      - ALL
+
+    security_opt:
+      - no-new-privileges:true
+
+    pids_limit: 256
+
+    command: sleep infinity
+
+  proxy:
+    image: ubuntu/squid:6.10-24.10_edge
+
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf:ro
+
+    networks:
+      - restricted
+      - internet
+
+networks:
+  restricted:
+    internal: true
+
+  internet:
+
+volumes:
+  claude-sandbox-config:
+    external: true
